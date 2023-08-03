@@ -2,10 +2,10 @@ import React from "react";
 
 function Categories() {
   const categories =  ["Все", "Мясные", "Вегетарианская" , "Гриль", "Острые", "Закрытые"]
-  const [activeCategory, setActiveCategory] = React.useState(parseInt(localStorage.getItem("activeCategory")))
+  const [activeCategory, setActiveCategory] = React.useState(parseInt(sessionStorage.getItem("activeCategory")) || 0)
   const onClickActiveCategory = (i) => {
     setActiveCategory(i)
-    localStorage.setItem("activeCategory", i)
+    sessionStorage.setItem("activeCategory", i)
   }
 
   return(

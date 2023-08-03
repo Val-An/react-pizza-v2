@@ -1,6 +1,16 @@
 import React from "react";
 
 function Sort() {
+  const popupList = ["популярности","цене","алфавиту"]
+  const [openPopup, setOpenPopup] = React.useState(false)
+  const [popupValue, setPopupValue] = React.useState(sessionStorage.getItem("popupValue") || "популярности")
+
+  const changePopupValue = (elem) => {
+    setPopupValue(elem)
+    sessionStorage.setItem("popupValue", elem)
+    setOpenPopup(false)
+  }
+
   return(
     <div className="sort">
       <div className="sort__label">
@@ -17,15 +27,17 @@ function Sort() {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span>популярности</span>
+        <span onClick={() => setOpenPopup(!openPopup)}>{popupValue}</span>
       </div>
-      <div className="sort__popup">
+      {openPopup
+        &&
+        <div className="sort__popup">
         <ul>
-          <li className="active">популярности</li>
-          <li>цене</li>
-          <li>алфавиту</li>
+          {popupList.map((elem, i) => (
+            <li onClick={() => changePopupValue(elem)} className={popupValue === elem ? "active" : ""} key={i}>{elem}</li>
+          ))}
         </ul>
-      </div>
+      </div>}
     </div>
   )
 }
