@@ -6,8 +6,11 @@ import Cart from "./Components/Cart";
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 
 const router = createBrowserRouter([
-  {path: "/", element: <App />},
-  {path: "/cart", element: <Cart />}
+  {
+    path: "/", element: <App />,
+    children: [{
+      path: "/cart", element: <Cart />
+    }]},
 ])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
