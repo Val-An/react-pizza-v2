@@ -3,7 +3,9 @@ import React from "react";
 import Header from "./Components/Header"
 import {Route, Routes} from "react-router-dom";
 import Home from "./Pages/Home";
-import Cart from "./Components/Cart";
+import Cart from "./Pages/Cart";
+import CartEmpty from "./Pages/CartEmpty";
+import NotFound from "./Pages/NotFound";
 
 function App() {
 
@@ -13,8 +15,10 @@ function App() {
         <Header />
         <div className="content">
         <Routes>
-          <Route path={"/"} element={<Home />}/>
+          <Route index element={<Home />}/>
           <Route path={"/cart"} element={<Cart />}/>
+          <Route path={"/cart-empty"} element={<CartEmpty />}/>
+          <Route path={"*"} element={<NotFound />}/>
         </Routes>
         </div>
       </div>
