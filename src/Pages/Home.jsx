@@ -16,6 +16,7 @@ function Home() {
         setPizzasList(res)
         setIsLoading(false)
       })
+    window.scroll(0, 0)
   }, [])
 
   return (

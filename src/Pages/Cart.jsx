@@ -1,3 +1,4 @@
+import {Link} from "react-router-dom";
 
 function Cart() {
   return (
@@ -34,7 +35,7 @@ function Cart() {
             <span>Очистить корзину</span>
           </div>
         </div>
-        <div className="content__items">
+        <div className="">
           <div className="cart__item">
             <div className="cart__item-img">
               <img
@@ -259,14 +260,14 @@ function Cart() {
             <span> Сумма заказа: <b>900 ₽</b> </span>
           </div>
           <div className="cart__bottom-buttons">
-            <a href="/" className="button button--outline button--add go-back-btn">
+            <Link to="/" className="button button--outline button--add go-back-btn">
               <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M7 13L1 6.93015L6.86175 1" stroke="#D3D3D3" strokeWidth="1.5" strokeLinecap="round"
                       strokeLinejoin="round"/>
               </svg>
 
               <span>Вернуться назад</span>
-            </a>
+            </Link>
             <div className="button pay-btn">
               <span>Оплатить сейчас</span>
             </div>
