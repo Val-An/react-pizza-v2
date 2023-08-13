@@ -1,13 +1,16 @@
 import React from "react";
 
-function Sort() {
-  const popupList = ["популярности","цене","алфавиту"]
+function Sort({popupValue, setPopupValue}) {
+  const popupList = [
+    {name : "популярности", sort: "rating"},
+    {name : "цене", sort : "price"},
+    {name : "алфавиту", sort : "title"}]
   const [openPopup, setOpenPopup] = React.useState(false)
-  const [popupValue, setPopupValue] = React.useState(sessionStorage.getItem("popupValue") || "популярности")
 
-  const changePopupValue = (elem) => {
-    setPopupValue(elem)
-    sessionStorage.setItem("popupValue", elem)
+  const changePopupValue = (obj, i) => {
+    setPopupValue(obj)
+    sessionStorage.setItem("popupValueName", obj.name)
+    sessionStorage.setItem("popupValueSort", obj.sort)
     setOpenPopup(false)
   }
 
@@ -27,14 +30,18 @@ function Sort() {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span onClick={() => setOpenPopup(!openPopup)}>{popupValue}</span>
+        <span onClick={() => setOpenPopup(!openPopup)}>{popupValue.name}</span>
       </div>
       {openPopup
         &&
         <div className="sort__popup">
         <ul>
-          {popupList.map((elem, i) => (
-            <li onClick={() => changePopupValue(elem)} className={popupValue === elem ? "active" : ""} key={i}>{elem}</li>
+          {popupList.map((obj, i) => (
+            <li onClick={() => changePopupValue(obj)}
+                className={popupValue === obj ? "active" : ""}
+                key={i}>
+              {obj.name}
+            </li>
           ))}
         </ul>
       </div>}

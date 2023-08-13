@@ -1,11 +1,10 @@
 import React from "react";
 
-function Categories() {
+function Categories({activeCategory, setActiveCategory}) {
   const categories =  ["Все", "Мясные", "Вегетарианская" , "Гриль", "Острые", "Закрытые"]
-  const [activeCategory, setActiveCategory] = React.useState(parseInt(sessionStorage.getItem("activeCategory")) || 0)
-  const onClickActiveCategory = (i) => {
-    setActiveCategory(i)
-    sessionStorage.setItem("activeCategory", i)
+  const onClickActiveCategory = (id) => {
+    setActiveCategory(id)
+    sessionStorage.setItem("activeCategory", id)
   }
 
   return(
