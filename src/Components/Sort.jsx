@@ -1,20 +1,23 @@
 import React from "react";
 
-function Sort({popupValue, setPopupValue}) {
+function Sort({ popupValue, setPopupValue }) {
   const popupList = [
-    {name : "популярности", sort: "rating"},
-    {name : "цене", sort : "price"},
-    {name : "алфавиту", sort : "title"}]
-  const [openPopup, setOpenPopup] = React.useState(false)
+    { name: "популярности", sort: "rating", order: "desc" },
+    { name: "по дороже", sort: "price", order: "desc" },
+    { name: "по дешевле", sort: "price", order: "asc" },
+    { name: "алфавиту", sort: "title", order: "asc" },
+  ];
+  const [openPopup, setOpenPopup] = React.useState(false);
 
   const changePopupValue = (obj, i) => {
-    setPopupValue(obj)
-    sessionStorage.setItem("popupValueName", obj.name)
-    sessionStorage.setItem("popupValueSort", obj.sort)
-    setOpenPopup(false)
-  }
+    setPopupValue(obj);
+    sessionStorage.setItem("popupValueName", obj.name);
+    sessionStorage.setItem("popupValueSort", obj.sort);
+    sessionStorage.setItem("popupValueOrder", obj.order);
+    setOpenPopup(false);
+  };
 
-  return(
+  return (
     <div className="sort">
       <div className="sort__label">
         <svg
@@ -32,21 +35,23 @@ function Sort({popupValue, setPopupValue}) {
         <b>Сортировка по:</b>
         <span onClick={() => setOpenPopup(!openPopup)}>{popupValue.name}</span>
       </div>
-      {openPopup
-        &&
+      {openPopup && (
         <div className="sort__popup">
-        <ul>
-          {popupList.map((obj, i) => (
-            <li onClick={() => changePopupValue(obj)}
+          <ul>
+            {popupList.map((obj, i) => (
+              <li
+                onClick={() => changePopupValue(obj)}
                 className={popupValue === obj ? "active" : ""}
-                key={i}>
-              {obj.name}
-            </li>
-          ))}
-        </ul>
-      </div>}
+                key={i}
+              >
+                {obj.name}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
-  )
+  );
 }
 
-export default Sort
+export default Sort;
