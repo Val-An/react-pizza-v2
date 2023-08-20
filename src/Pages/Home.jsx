@@ -13,7 +13,7 @@ const getSessionStorage = () => {
   };
 };
 
-function Home() {
+function Home({ searchValue }) {
   const [pizzasList, setPizzasList] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
 
@@ -39,6 +39,15 @@ function Home() {
     window.scroll(0, 0);
   }, [activeCategory, popupValue]);
 
+  const skeleton = [...new Array(6)].map((_, index) => (
+    <PizzaBlockSkeleton key={index} />
+  ));
+  const pizzas = pizzasList
+    .filter((obj) =>
+      obj.title.toLowerCase().includes(searchValue.toLowerCase()),
+    )
+    .map((elem) => <PizzaBlock {...elem} key={elem.id} />);
+
   return (
     <div className="container">
       <div className="content__top">
@@ -52,13 +61,7 @@ function Home() {
         />
       </div>
       <h2 className="content__title">Все пиццы</h2>
-      <div className="content__items">
-        {isLoading
-          ? [...new Array(6)].map((_, index) => (
-              <PizzaBlockSkeleton key={index} />
-            ))
-          : pizzasList.map((elem) => <PizzaBlock {...elem} key={elem.id} />)}
-      </div>
+      <div className="content__items">{isLoading ? skeleton : pizzas}</div>
     </div>
   );
 }
