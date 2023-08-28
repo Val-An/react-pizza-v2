@@ -2,10 +2,10 @@ import React from "react";
 
 function Sort({ popupValue, setPopupValue }) {
   const popupList = [
-    { name: "популярности", sort: "rating", order: "desc" },
-    { name: "по дороже", sort: "price", order: "desc" },
-    { name: "по дешевле", sort: "price", order: "asc" },
-    { name: "алфавиту", sort: "title", order: "asc" },
+    { name: "популярности", sort: "rating" },
+    { name: "по дороже", sort: "price" },
+    { name: "по дешевле", sort: "-price" },
+    { name: "алфавиту", sort: "title" },
   ];
   const [openPopup, setOpenPopup] = React.useState(false);
 
@@ -13,7 +13,6 @@ function Sort({ popupValue, setPopupValue }) {
     setPopupValue(obj);
     sessionStorage.setItem("popupValueName", obj.name);
     sessionStorage.setItem("popupValueSort", obj.sort);
-    sessionStorage.setItem("popupValueOrder", obj.order);
     setOpenPopup(false);
   };
 

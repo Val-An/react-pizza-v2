@@ -5,12 +5,9 @@ import Sort from "../Components/Sort";
 import PizzaBlockSkeleton from "../Components/PizzaBlockSkeleton";
 import PizzaBlock from "../Components/PizzaBlock";
 
-const getSessionStorage = () => {
-  return {
-    name: sessionStorage.getItem("popupValueName"),
-    sort: sessionStorage.getItem("popupValueSort"),
-    order: sessionStorage.getItem("popupValueOrder"),
-  };
+const getSessionStorage = {
+  name: sessionStorage.getItem("popupValueName") || "популярности",
+  sort: sessionStorage.getItem("popupValueSort") || "rating",
 };
 
 function Home({ searchValue }) {
@@ -20,16 +17,16 @@ function Home({ searchValue }) {
   const [activeCategory, setActiveCategory] = React.useState(
     parseInt(sessionStorage.getItem("activeCategory")) || 0,
   );
-  const [popupValue, setPopupValue] = React.useState({
-    name: "популярности",
-    sort: "rating",
-    order: "desc",
-  });
+  const [popupValue, setPopupValue] = React.useState(getSessionStorage);
 
   React.useEffect(() => {
     setIsLoading(true);
+
+    const sortBy = popupValue.sort.replace("-", "");
+    const order = popupValue.sort.includes("-") ? "asc" : "desc";
+
     fetch(
-      `https://64cbe6b52eafdcdc85197485.mockapi.io/pizzas?category=${activeCategory}&sortBy=${popupValue.sort}&order=${popupValue.order}`,
+      `https://64cbe6b52eafdcdc85197485.mockapi.io/pizzas?category=${activeCategory}&sortBy=${sortBy}&order=${order}`,
     )
       .then((res) => res.json())
       .then((res) => {
