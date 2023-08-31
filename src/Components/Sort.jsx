@@ -5,7 +5,7 @@ function Sort({ popupValue, setPopupValue }) {
     { name: "популярности", sort: "rating" },
     { name: "по дороже", sort: "price" },
     { name: "по дешевле", sort: "-price" },
-    { name: "алфавиту", sort: "title" },
+    { name: "алфавиту", sort: "-title" },
   ];
   const [openPopup, setOpenPopup] = React.useState(false);
 

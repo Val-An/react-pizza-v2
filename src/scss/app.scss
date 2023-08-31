@@ -1,7 +1,7 @@
 //@import 'fonts';
-@import 'variables';
-@import 'libs/normalize';
-@import 'components/all';
+@import "variables";
+@import "libs/normalize";
+@import "components/all";
 
 body {
   background-color: $background;
@@ -30,13 +30,13 @@ body {
   }
 
   &__items {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: repeat(3, 1fr);
-      grid-column-gap: 11px;
-      justify-items: center;
-      align-items: center;
-    
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    //grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 11px;
+    justify-items: center;
+    align-items: center;
+
     @media (max-width: 1500px) {
       grid-template-columns: repeat(3, 1fr);
     }
@@ -75,7 +75,6 @@ body {
     }
 
     @media (max-width: 940px) {
-
     }
   }
 }

@@ -1,0 +1,45 @@
+.root {
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  li {
+    margin: 0 10px;
+    cursor: pointer;
+  }
+
+  .previous,
+  .next {
+    a {
+      font-weight: 800;
+      color: #fe5f1e;
+    }
+  }
+
+  .pages {
+    display: flex;
+    height: 35px;
+    width: 35px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid grey;
+    border-radius: 50%;
+
+    a {
+      text-align: center;
+      font-weight: 200;
+      //color: red;
+    }
+
+    &.active {
+      border: 2px solid #fe5f1e;
+      border-radius: 50%;
+
+      a {
+        color: #fe5f1e;
+        font-weight: 600;
+      }
+    }
+  }
+}
