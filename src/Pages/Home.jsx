@@ -5,13 +5,15 @@ import Sort from "../Components/Sort";
 import PizzaBlockSkeleton from "../Components/PizzaBlockSkeleton";
 import PizzaBlock from "../Components/PizzaBlock";
 import Pagination from "../Components/Pagination";
+import { SearchContext } from "../App";
 
 const getSessionStorage = {
   name: sessionStorage.getItem("popupValueName") || "популярности",
   sort: sessionStorage.getItem("popupValueSort") || "rating",
 };
 
-function Home({ searchValue }) {
+function Home() {
+  const { searchValue } = React.useContext(SearchContext);
   const [pizzasList, setPizzasList] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const [activeCategory, setActiveCategory] = React.useState(
